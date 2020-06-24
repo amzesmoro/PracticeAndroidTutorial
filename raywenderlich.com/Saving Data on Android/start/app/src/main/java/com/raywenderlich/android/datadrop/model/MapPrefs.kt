@@ -23,5 +23,5 @@ object MapPrefs {
         sharedPrefs().edit().putString(KEY_MAP_TYPE, mapType).apply()
     }
 
-    fun getMapType(): String = sharedPrefs().getString(KEY_MARKER_COLOR, "Hybrid")
+    fun getMapType(): String = sharedPrefs().getString(KEY_MARKER_COLOR, "Normal")
 }

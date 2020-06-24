@@ -46,14 +46,27 @@ object FileRepository : DropRepository {
     }
 
     override fun clearDrop(drop: Drop) {
-        TODO("Not yet implemented")
+        dropFile(dropFilename(drop)).delete()
     }
 
     override fun clearAllDrops() {
-        TODO("Not yet implemented")
+        try {
+            val fileList = dropsDirectory().list()
+            fileList.map { dropFile(it).delete() }
+            dropsDirectory().delete()
+        } catch (e: IOException) {
+            Log.e("FileRepository", "Error deleting drops")
+        }
     }
 
-    private fun dropsDirectory() = getContext().getDir("drops", Context.MODE_PRIVATE)
+    // Changes to External Storage
+    private fun dropsDirectory(): File {
+        val dropsDirectory = File(getContext().getExternalFilesDir(null), "drops")
+        if (!dropsDirectory.exists()) {
+            dropsDirectory.mkdirs()
+        }
+        return dropsDirectory
+    }
 
     private fun dropFile(filename: String) = File(dropsDirectory(), filename)
 

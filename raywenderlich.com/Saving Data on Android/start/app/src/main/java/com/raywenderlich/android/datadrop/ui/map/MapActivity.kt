@@ -84,6 +84,8 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, MapContract.View {
     presenter = Injection.provideMapPresenter(this)
     presenter.start()
 
+    map.mapType = MapType.createMapType(presenter.getMapType()).getGoogleMapType()
+
     mapIsReady = true
   }
 
@@ -125,6 +127,10 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, MapContract.View {
   private fun placeMarkerOnMap(location: LatLng, title: String) {
     val markerOptions = MarkerOptions().position(location)
     markerOptions.title(title)
+
+    val markerColor = MarkerColor.createMarkerColor(presenter.getMarkerColor())
+    markerOptions.icon(markerColor.getMarkerBitmapDescriptor())
+
     map.addMarker(markerOptions)
   }
 
@@ -193,7 +199,7 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, MapContract.View {
       (0 until childCount)
           .map { group.getChildAt(it) as RadioButton }
           .filter { it.id == checkedId }
-          .forEach { println("Selected RadioButton -> ${it.text}") }
+          .forEach { presenter.saveMarkerColor(it.text.toString()) }
     }
 
     dialog.show()
@@ -218,7 +224,10 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, MapContract.View {
       (0 until childCount)
           .map { group.getChildAt(it) as RadioButton }
           .filter { it.id == checkedId }
-          .forEach { println("Selected RadioButton -> ${it.text}") }
+          .forEach {
+            presenter.saveMapType(it.text.toString())
+            map.mapType = MapType.createMapType(presenter.getMapType()).getGoogleMapType()
+          }
     }
 
     dialog.show()

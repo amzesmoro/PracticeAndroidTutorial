@@ -1,21 +1,29 @@
 package com.raywenderlich.android.datadrop.model
 
+import android.arch.lifecycle.MutableLiveData
 import android.content.ContentValues
 import android.util.Log
 import com.raywenderlich.android.datadrop.app.DataDropApplication
 import com.raywenderlich.android.datadrop.model.DropDbSchema.DropTable
+import com.raywenderlich.android.datadrop.viewmodel.ClearAllDropsListener
+import com.raywenderlich.android.datadrop.viewmodel.ClearDropListener
+import com.raywenderlich.android.datadrop.viewmodel.DropInsertListener
 import java.io.IOException
 
 class SQLiteRepository : DropRepository {
 
     private val database = DropDbHelper(DataDropApplication.getAppContext()).writableDatabase
 
-    override fun addDrop(drop: Drop) {
+    override fun addDrop(drop: Drop, listerner: DropInsertListener) {
         val contentValues = getDropContentValues(drop)
-        database.insert(DropTable.NAME, null, contentValues)
+        val result = database.insert(DropTable.NAME, null, contentValues)
+        if (result != -1L) {
+            listerner.dropInserted(drop)
+        }
     }
 
-    override fun getDrops(): List<Drop> {
+    override fun getDrops(): MutableLiveData<List<Drop>> {
+        val liveData = MutableLiveData<List<Drop>>()
         val drops = mutableListOf<Drop>()
         val cursor = queryDrops(null, null)
 
@@ -31,19 +39,26 @@ class SQLiteRepository : DropRepository {
             cursor.close()
         }
 
-        return drops
+        liveData.value = drops
+        return liveData
     }
 
-    override fun clearDrop(drop: Drop) {
-        database.delete(
+    override fun clearDrop(drop: Drop, listener: ClearDropListener) {
+        val result = database.delete(
                 DropTable.NAME,
                 DropTable.Columns.ID + " = ?",
                 arrayOf(drop.id)
         )
+        if (result != 0) {
+            listener.dropCleared(drop)
+        }
     }
 
-    override fun clearAllDrops() {
-        database.delete(DropTable.NAME, null, null)
+    override fun clearAllDrops(listener: ClearAllDropsListener) {
+        val result = database.delete(DropTable.NAME, null, null)
+        if (result != 0) {
+            listener.allDropsCleared()
+        }
     }
 
     private fun getDropContentValues(drop: Drop): ContentValues {

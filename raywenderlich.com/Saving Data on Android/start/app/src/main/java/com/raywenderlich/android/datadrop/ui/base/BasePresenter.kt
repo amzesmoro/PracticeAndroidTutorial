@@ -33,5 +33,5 @@ package com.raywenderlich.android.datadrop.ui.base
 
 
 interface BasePresenter {
-  fun start()
+    fun start()
 }

@@ -32,8 +32,8 @@
 package com.raywenderlich.android.datadrop.app
 
 import com.raywenderlich.android.datadrop.model.DropRepository
-import com.raywenderlich.android.datadrop.model.SQLiteRepository
+import com.raywenderlich.android.datadrop.model.RoomRepository
 
 object Injection {
-  fun provideDropRepository(): DropRepository = SQLiteRepository()
+    fun provideDropRepository(): DropRepository = RoomRepository()
 }

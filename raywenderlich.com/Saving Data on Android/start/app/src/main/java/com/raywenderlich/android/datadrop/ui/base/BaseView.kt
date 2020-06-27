@@ -33,6 +33,6 @@ package com.raywenderlich.android.datadrop.ui.base
 
 
 interface BaseView<T> {
-  var presenter: T
+    var presenter: T
 }
 

@@ -12,3 +12,9 @@ Learn various ways to persist data in your app: SharedPreferences, saving data t
 * MVVM
 * Room, ViewModel, LiveData
 * Repository Pattern
+
+### Kotlin Coroutines: Fundamentals
+Learn the fundamentals about threads and coroutines, along with the basics of the Kotlin Coroutines framework.
+##### Starter Project: Empty Projet 
+##### Course Summary:
+

@@ -17,4 +17,13 @@ Learn various ways to persist data in your app: SharedPreferences, saving data t
 Learn the fundamentals about threads and coroutines, along with the basics of the Kotlin Coroutines framework.
 ##### Starter Project: Empty Projet 
 ##### Course Summary:
-
+Part 1: Beginning Threads
+Learned Concepts:
+* Threading
+* Background Processing
+* Handler and Loopers (Post result to the Main Thread)
+Part 2: Beginning Coroutines
+Coroutine Concepts:
+* Coroutine Builders
+* Coroutine Scope
+* Dispatchers

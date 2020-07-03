@@ -22,6 +22,7 @@ Learned Concepts:
 * Threading
 * Background Processing
 * Handler and Loopers (Post result to the Main Thread)
+
 Part 2: Beginning Coroutines
 Coroutine Concepts:
 * Coroutine Builders

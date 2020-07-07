@@ -28,3 +28,9 @@ Coroutine Concepts:
 * Coroutine Builders
 * Coroutine Scope
 * Dispatchers
+
+### Android Networking: Fundamentals
+Learn about HTTP, JSON, REST and all the other cool and important abbreviations in the world of networking! Implement the Retrofit library in Android, add interceptors, parsers, and Kotlin Coroutines.
+##### Starter Project: Had Model, Networking, UI, Utils Package and App.kt
+##### Course Summary:
+

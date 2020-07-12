@@ -31,7 +31,6 @@
 package com.raywenderlich.android.rwandroidtutorial.database
 
 import android.os.Parcelable
-import androidx.lifecycle.LiveData
 import androidx.room.ColumnInfo
 import kotlinx.android.parcel.Parcelize
 

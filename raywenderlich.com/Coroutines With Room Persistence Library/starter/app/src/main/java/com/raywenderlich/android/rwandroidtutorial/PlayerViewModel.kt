@@ -34,9 +34,6 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
-import com.google.gson.Gson
-import com.google.gson.reflect.TypeToken
-import com.raywenderlich.android.rwandroidtutorial.database.Player
 import com.raywenderlich.android.rwandroidtutorial.database.PlayerListItem
 import com.raywenderlich.android.rwandroidtutorial.database.PlayersDatabase
 
@@ -53,17 +50,6 @@ open class PlayerViewModel(application: Application) : AndroidViewModel(applicat
   }
   // viewModelScope CoroutineScope from the lifecycle-viewmodel-ktx
   // library to allow the database to use this scope when running coroutines.
-
-//  fun populateDatabase() {
-//    val resources = getApplication<Application>().resources
-//    val jsonString = resources.openRawResource(R.raw.players).bufferedReader().use {
-//      it.readText()
-//    }
-//    val typeToken = object : TypeToken<List<Player>>() {}.type
-//    val tennisPlayers = Gson().fromJson<List<Player>>(jsonString, typeToken)
-//    repository.insertAllPlayers(tennisPlayers)
-//  }
-
   fun getAllPlayers(): LiveData<List<PlayerListItem>> {
     return repository.getAllPlayers()
   }

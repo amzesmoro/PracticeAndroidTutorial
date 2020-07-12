@@ -41,10 +41,6 @@ class PlayerRepository(private val playerDao: PlayerDao) {
     return playerDao.getAllPlayers()
   }
 
-//  fun insertAllPlayers(players: List<Player>) {
-//    playerDao.insertAllPlayers(players)
-//  }
-
   fun getPlayer(id: Int): LiveData<Player> {
     return playerDao.getPlayer(id)
   }

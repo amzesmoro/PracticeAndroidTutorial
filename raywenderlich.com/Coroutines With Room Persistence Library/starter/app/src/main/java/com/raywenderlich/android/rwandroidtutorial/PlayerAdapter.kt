@@ -39,7 +39,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.raywenderlich.android.rwandroidtutorial.database.PlayerListItem
 import com.raywenderlich.android.rwandroidtutorial.ui.CircleTransformation
 import com.squareup.picasso.Picasso
-import kotlinx.android.synthetic.main.player_row.view.*
 import java.util.*
 
 class PlayerAdapter(
